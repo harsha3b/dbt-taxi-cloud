@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: raw_nyc_taxi
+    database: bigquery-public-data
+    schema: new_york_taxi_trips
+    description: "NYC TLC trip record data from the BigQuery public dataset"
+    tables:
+      - name: tlc_green_trips_2019
+        description: "Green taxi trips for 2019"
+      - name: tlc_yellow_trips_2019
+        description: "Yellow taxi trips for 2019"
