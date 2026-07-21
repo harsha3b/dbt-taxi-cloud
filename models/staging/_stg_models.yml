@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: stg_green_tripdata
+    description: "Staged green taxi trips, 2019. Sourced from BigQuery public data."
+    columns:
+      - name: vendor_id
+        description: "Taxi vendor. 1 = Creative Mobile Technologies, 2 = VeriFone."
+        tests:
+          - not_null
+      - name: pickup_datetime
+        tests:
+          - not_null
+      - name: dropoff_datetime
+        tests:
+          - not_null
+      - name: service_type
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['green']   # ← 'arguments' wrapper added
+      - name: total_amount
+        tests:
+          - not_null
+
+  - name: stg_yellow_tripdata
+    description: "Staged yellow taxi trips, 2019. Sourced from BigQuery public data."
+    columns:
+      - name: vendor_id
+        tests:
+          - not_null
+      - name: pickup_datetime
+        tests:
+          - not_null
+      - name: service_type
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['yellow']  
+      - name: total_amount
+        tests:
+          - not_null

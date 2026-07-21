@@ -37,10 +37,19 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   taxi_analytics:
-    # Applies to all files under models/example/
+    # Applies to all files under models/
+    # This creates views/tables in your dbt_harsha_cloud dataset.
     staging:
       +materialized: view
     core:
       +materialized: table
     mart:
       +materialized: table
+
+# This creates a taxi_zone_lookup table in your dbt_harsha_cloud dataset. 
+# This part of code is added later as taxi_zone_lookup was manually created and loaded into seeds folder
+seeds:
+  taxi_analytics:
+    taxi_zone_lookup:
+      +column_types:
+        locationid: integer
